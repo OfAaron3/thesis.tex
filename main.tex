@@ -1,0 +1,318 @@
+  % NOTE(cmo): Once upon a time from below \/ but almost entirely customised with
+  % very little remaining of original structure.
+  % This template was written by John Davies <john.davies@glasgow.ac.uk> 2017-02-06
+  % It matches the university specification at the time of writing
+  %   for the widths of the page margins and one-and-a-half line spacing
+  % You may want to include more packages, particularly for heavy mathematics
+  % Please let me know if you find any errors or wish to suggest improvements
+
+% \documentclass[11pt,titlepage,oneside,a4paper]{book}
+\documentclass[titlepage,oneside,a4paper,headinclude,
+               headheight=16.5pt,footheight=16.5pt,
+               chapterprefix,
+              %  autoenlargeheadfoot=true,
+               parskip=half,
+               bibliography=totoc,listof=totoc]{scrbook}
+\addtokomafont{disposition}{\rmfamily}
+\usepackage{scrlayer-scrpage, datetime}
+\usepackage{journals}
+\clearpairofpagestyles
+\automark{chapter}
+\automark*{section}
+\cohead{\rightmark}
+\ofoot*{\upshape \thepage}
+\usepackage{journals}
+\usepackage{setspace}
+% Set this in the body.
+% \setstretch{1.5}
+% \onehalfspacing
+
+
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{xcolor}
+\graphicspath{{./Figures/}}
+% \usepackage{float}
+\definecolor{lightGrey}{rgb}{0.9,0.9,0.9}
+\definecolor{Red}{rgb}{1.0,0.0,0.0}
+% https://personal.sron.nl/~pault/
+% Paul Tol's vibrant qualitative colour scheme.
+\definecolor{TolBlue}{HTML}{0077BB}
+\definecolor{TolCyan}{HTML}{33BBEE}
+\definecolor{TolTeal}{HTML}{009988}
+\definecolor{TolOrange}{HTML}{EE7733}
+\definecolor{TolRed}{HTML}{CC3311}
+\definecolor{TolMagenta}{HTML}{EE3377}
+\definecolor{TolGrey}{HTML}{BBBBBB}
+
+
+\definecolor{UniversityBlue}{HTML}{003865}
+\definecolor{SkyBlue}{HTML}{005398}
+
+\renewcommand*{\raggedchapter}{\centering}
+\renewcommand*{\chapterformat}{%
+\color{SkyBlue}%
+\rule{0.3\textwidth}{1pt}%
+\hspace{0.5em}%
+\scalebox{2}{\thechapter}%
+\hspace{0.5em}%
+\rule{0.3\textwidth}{1pt}%
+\vspace*{-0\baselineskip}%
+}
+\renewcommand*{\sectionformat}{\color{SkyBlue}{\thesection\autodot}\enspace}
+\renewcommand*{\subsectionformat}{\color{SkyBlue}{\thesubsection\autodot}\enspace}
+\renewcommand*{\subsubsectionformat}{\color{SkyBlue}{\thesubsubsection\autodot}\enspace}
+
+% \usepackage[margin=1em, font=small, labelfont=bf]{caption}
+\setcapmargin*{1em}
+\setcapindent{1em}
+\addtokomafont{caption}{\small}
+\addtokomafont{captionlabel}{\bfseries}
+% \usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes,fit,arrows,intersections,external,decorations}
+\tikzexternalize[prefix=TikzGen/]
+\usepackage{pgf}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+% \usepackage{mathpple}
+% \usepackage[default,regular,black]{sourceserifpro}
+% \usepackage[scaled=0.85]{beramono}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{bigints}
+% \usepackage{fourier}
+% \usepackage[charter]{mathdesign}
+% \usepackage[notext, nosf, nott]{kpfonts}
+\usepackage[default,regular,semibold]{sourceserifpro}
+
+%\usepackage[small, T1]{eulervm}
+
+\usepackage[scale=0.8, semibold]{sourcecodepro}
+\usepackage{sourcesanspro}
+\usepackage{gensymb}
+\usepackage[f]{esvect}
+% \usepackage[italic]{mathastext}
+% \makeatletter
+
+% \DeclareSymbolFont{EulerLetters}{T1}{zeur}{m}{n}
+% NOTE(cmo): This will only work with euler but will replace v in math mode with
+% \upsilon, which I personally never use. letters symbol font drawn directly
+% from euler.sty
+% Don't use this one, see below.
+% \DeclareMathSymbol{v}{\mathalpha}{letters}{"1D}
+% \DeclareMathSymbol{v}{\mathalpha}{letters}{"1D}
+
+% https://tex.stackexchange.com/q/611645/50104
+% Thanks to Ulrike Fischer who found a solution that doesn't break urls. But
+% shouldn't be necessary now
+
+% \DeclareMathSymbol{\REALV}{\mathalpha}{letters}{`v}
+% \DeclareMathSymbol{v}{\mathalpha}{letters}{"0A}
+% \makeatletter
+% \appto\UrlSpecials{\do\v{\REALV}}
+% \makeatother
+
+% Experiments adjusting characters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \DeclareSymbolFont{SSFLetters}{OT1}{\sfdefault}{m}{n}
+% \DeclareSymbolFont{CMletters}{OML}{cmm}{m}{it}
+% https://tex.stackexchange.com/a/27536/50104
+% \DeclareFontEncoding{FML}{}{}%
+% \DeclareFontSubstitution{FML}{futm}{m}{it}%
+% \DeclareSymbolFont{fourier}{FML}{futm}{m}{it}
+% \DeclareMathSymbol{\nu}{\mathalpha}{fourier}{23}
+
+% \DeclareMathSymbol{v}{\mathalpha}{fourier}{`v}
+% % \DeclareMathSymbol{v}{\mathalpha}{SSFLetters}{`v}
+% % \DeclareMathSymbol{\nu}{\mathalpha}{CMletters}{23}
+% \DeclareMathSymbol{v}{\mathalpha}{CMletters}{`v}
+% \makeatother
+% \usepackage{concmath}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{lipsum}
+
+%\renewcommand{\mathbf}{\mathbold} %for Eulervm, uses bold instead of bf
+% \let\oldhat\hat
+% \renewcommand{\vec}[1]{\vv{#1}} %vec uses esvect
+% \renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\cols}{col}
+\DeclareMathOperator{\nul}{null}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\image}{image}
+\DeclareMathOperator{\mathion}{ion}
+\DeclareRobustCommand{\ion}[2]{\textup{#1\,\textsc{\lowercase{#2}}}}
+\newcommand*\element[1][]{%
+  \def\aa@element@tr{#1}%
+  \aa@element
+}
+\newcommand{\degr}{\ensuremath{^\circ}}
+\newcommand{\arcmin}{\ensuremath{^\prime}}
+\newcommand{\arcsec}{\ensuremath{^{\prime\prime}}}
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+\newcommand{\tocheck}[1]{\textcolor{orange}{#1}}
+\newcommand{\todop}[1]{(\textcolor{red}{#1})}
+\newcommand{\tocheckp}[1]{(\textcolor{orange}{#1})}
+\newcommand{\citeneeded}{\textcolor{red}{(citation needed)}}
+
+
+% upquote fixes quotes in verbatim
+\usepackage{upquote}
+% microtype for the best microtypographical changes (few end-of-line hypenatovs :D)
+\usepackage{microtype}
+
+% NOTE(cmo): For university specified _print_ margins and headers
+% \usepackage[top=1.8cm,bottom=1.8cm,left=4.0cm,
+%             right=1.5cm,headheight=15pt,includeheadfoot]{geometry}
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[R]{\nouppercase{\rightmark}}
+% \fancyfoot[R]{\thepage}
+% \renewcommand{\headrulewidth}{0.2pt}
+% \newlength{\quarterPage}
+% \setlength{\quarterPage}{7.42cm}
+\usepackage[toc,page]{appendix}
+\usepackage[UKenglish]{babel}
+\usepackage{natbib}
+
+\setcitestyle{authoryear,round,semicolon,aysep={}}
+
+% Add extra non-fragile packages here
+\usepackage{siunitx}
+\sisetup{mode=text}
+% Don't indent paragraphs, separate vertically, KOMA can do this.
+% \usepackage{parskip}
+% The actual magic
+\usepackage{pythontex}
+% NOTE(cmo): Swap to deptythontex if you need to use the `depythontex' utility
+% to see what code has been generated!
+% \usepackage[depythontex]{pythontex}
+
+% NOTE(cmo): Set typearea parameters right at the end
+% \setstretch{1.5}
+\onehalfspacing
+% \KOMAoptions{DIV=12, BCOR=11mm}
+% \KOMAoptions{DIV=12, BCOR=16mm}
+\newlength{\typeareaoffset}
+\setlength{\typeareaoffset}{15pt}
+\addtolength{\hoffset}{\typeareaoffset}
+\KOMAoptions{DIV=12, BCOR=10mm}
+% \usepackage{showframe}
+
+% \usepackage[draft]{changes}
+% \newcommand*{\NOTE}[1]{{\color{Red} NOTE: #1}}
+
+\newcommand*{\NOTE}[1]{}
+
+\usepackage{import, url}
+\setpythontexcontext{figurewidth=\the\columnwidth}
+\newcommand{\includepgf}[1]{\IfFileExists{#1}{\input{#1}}{}}
+
+\usepackage[pdftex,colorlinks=true,bookmarksnumbered=true,linkcolor=UniversityBlue,
+  urlcolor=blue,citecolor=UniversityBlue,bookmarksopen=false,pagebackref=true,
+  pdfauthor={},pdftitle={},pdfkeywords={},
+  pdfsubject={},pdfcreator={},
+  pdfproducer={}, pdfencoding=auto, psdextra, breaklinks=true]{hyperref}
+
+
+\newcommand*{\mgii}{\ion{Mg}{ii}}
+\newcommand*{\ha}{H$\alpha$}
+\newcommand*{\mghk}{\ion{Mg}{ii}~h\&k}
+\newcommand*{\mgiihk}{\ion{Mg}{ii}~h\&k}
+\newcommand{\seef}[1]{(see Fig. \ref{#1})}
+\newcommand{\figp}[1]{(see Fig. \ref{#1})}
+\newcommand{\fig}[1]{Fig. \ref{#1}}
+\newcommand{\chap}[1]{Chap. \ref{#1}}
+\newcommand{\chapp}[1]{(see Chap. \ref{#1})}
+\newcommand{\sect}[1]{Sec. \ref{#1}}
+\newcommand{\sectp}[1]{(see Sec. \ref{#1})}
+\newcommand*{\kms}{~km~s$^{-1}$}
+\newcommand*{\dyncm}{~dyn~cm$^{-2}$}
+\newcommand{\comp}[1]{
+    {\fontfamily{qcr}\selectfont #1}}
+\newcommand{\cgsint}{~erg~s$^{-1}$~cm$^{-2}$~\AA$^{-1}$~sr$^{-1}$}
+\newcommand{\cgsintint}{~erg~s$^{-1}$~cm$^{-2}$~sr$^{-1}$}
+\newcommand{\eq}[1]{Eq. \ref{#1}}
+\newcommand{\eqp}[1]{(see Eq. \ref{#1})}
+% Roman or math font derivatives
+%\newcommand*{\dd}{\mathrm{d}}
+\newcommand*{\dd}{d}
+\DeclareSIUnit\erg{erg}
+\setcounter{chapter}{0}
+
+\begin{document}
+\include{PythonTexSetup}
+\begin{titlepage}
+\centering
+\vspace*{1cm}  % Need the * or the space is swallowed at the top of the page
+\bfseries\Large
+Diagnostics of the Thermodynamic\\ Properties of Solar Prominences\\
+%Thermodynamic Solar Prominence Diagnostics\\
+\vspace{2cm}
+\normalfont\large{\bfseries{
+Aaron W. Peat\\
+MSci (Hons)\\
+}}
+\vspace{1.5cm}
+Submitted in fulfilment of the requirements for the\\
+degree of Doctor of Philosophy\\
+\vspace{1.5cm}
+Astronomy and Astrophysics Group\\
+School of Physics and Astronomy\\
+University of Glasgow\\
+\vspace{1cm}
+\includegraphics[width=0.5\columnwidth]{GlaLogo.pdf}
+\\
+\vspace{1cm}
+% Insert month and year of date deposited with library for final version
+\monthname\hspace{0.2em}\the\year{}
+\end{titlepage}
+% Order: https://www.gla.ac.uk/media/Media_549236_smxx.pdf Appendix (from MVLS, also not self-consistent on ordering)
+\frontmatter  % Turn off chapter numbering, use roman page numbers
+% NOTE(cmo): 1.5 spacing in abstract
+% \onehalfspacing
+% \setstretch{1.5}
+% \KOMAoptions{DIV=last}
+\include{Misc/Copyright}
+\include{Misc/Epigraph}
+\include{Misc/Abstract}
+% NOTE(cmo): 1.0 spacing for table of contents etc
+% \singlespacing
+% \KOMAoptions{DIV=last}
+\tableofcontents
+% \listoftables
+\listoffigures
+% NOTE(cmo): 1.5 spacing in text
+% \onehalfspacing
+% \setstretch{1.5}
+% \KOMAoptions{DIV=last}
+
+\include{Misc/Acknowledgements}
+ 
+\mainmatter % Turn on chapter numbering, reset page numbers, use arabic
+\include{00Introduction/Introduction}
+\include{01Observations/observations}
+\include{02Modelling1D/modelling1d}
+\include{03Modelling2D/modelling2d} 
+\include{04CBPs/cbps}
+\include{05Conclusions/conclusions}
+% \include{Misc/ConcludingRemarks}
+\appendix
+
+\backmatter  % Turn off chapter numbering
+
+% {\setstretch{1.0}\small
+% {\small
+\bibliographystyle{aasjournal}
+\setlength\bibsep{0.2\baselineskip}
+\bibliography{thesis.bib}
+% }
+
+
+\end{document}
